@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import android.support.test.espresso.Espresso;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -32,22 +33,30 @@ public class ControllingAdapter {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
 
     @Test
-    public void start_stop_Button() {
+    public void start_shouldStartTimer_whenButtonPressed() {
 
         onView(withId(time)).check(matches(withText("00:00:00")));
         onView(withId(startButton)).perform(click());
 
         try {
             Thread.sleep(1000);
-            onView(withId(time)).check(matches(withText("00:00:00")));
-
-            onView(withId(stopButton)).perform(click());
-            Thread.sleep(1000);
-            onView(withId(time)).check(matches(withText("00:00:00")));
+            onView(withId(time)).check(matches(withText("00:00:01")));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
+
+    @Test
+    public void stop_shouldStopTimer_whenButtonPressed() {
+
+        // get start time
+        // press stop
+        // wait 1 sec
+        // check if time changed
+
+        //TextView timeLabel = findViewById();
+    }
+
+
 
 }
