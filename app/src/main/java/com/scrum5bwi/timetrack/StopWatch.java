@@ -9,34 +9,48 @@ import java.util.ArrayList;
 
 public class StopWatch {
     private long startTime;
+    private long currentTime;
 
     private ArrayList<Long> roundsList = new ArrayList<>();
 
     private boolean paused = false;
+    private boolean started = false;
     private ArrayList<Long> pauseList = new ArrayList<>();
     private ArrayList<Long> resumeList = new ArrayList<>();
 
     public StopWatch() {
         startTime = System.currentTimeMillis();
+        currentTime = startTime;
     }
 
     public String getCurrentTime() {
-        long timeSinceStart = System.currentTimeMillis() - startTime;
-        long pauseDurations = 0;
+        if(!paused) {
+            long timeSinceStart = System.currentTimeMillis() - startTime;
+            long pauseDurations = 0;
 
-        for (int i = 0; i < pauseList.size(); i++) {
-            long pauseTime = pauseList.get(i);
-            long resumeTime;
-            if(paused) {
-                resumeTime = System.currentTimeMillis();
-            } else {
-                resumeTime = resumeList.get(i);
+            for (int i = 0; i < pauseList.size(); i++) {
+                long pauseTime = pauseList.get(i);
+                long resumeTime;
+                if (paused) {
+                    resumeTime = System.currentTimeMillis();
+                } else {
+                    resumeTime = resumeList.get(i);
+                }
+
+                pauseDurations += resumeTime - pauseTime;
             }
-
-            pauseDurations += resumeTime - pauseTime;
+            currentTime = timeSinceStart - pauseDurations;
         }
+        return getTimeString(currentTime);
+    }
 
-        return getTimeString(timeSinceStart - pauseDurations);
+    public void startTime() {
+        startTime = System.currentTimeMillis();
+        started = true;
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
     public void pauseTime() {
@@ -55,7 +69,16 @@ public class StopWatch {
 
     private String getTimeString(long timeStamp) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SS");
-        String timeString  = dateFormat.format(timeStamp);
+        SimpleDateFormat shortDateFormat = new SimpleDateFormat("mm:ss:SS");
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
+        String timeString;
+
+        if(hourFormat.format(timeStamp).equals("00")) {
+            timeString = shortDateFormat.format(timeStamp);
+        } else {
+            timeString = dateFormat.format(timeStamp);
+        }
+
         return timeString;
     }
 
