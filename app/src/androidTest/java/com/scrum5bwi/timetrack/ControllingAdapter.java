@@ -55,6 +55,7 @@ public class ControllingAdapter {
         // check if time changed
 
         //TextView timeLabel = findViewById();
+
     }
 
 
