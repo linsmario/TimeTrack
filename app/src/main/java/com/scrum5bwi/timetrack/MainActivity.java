@@ -9,5 +9,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StopWatch stopWatch = new StopWatch();
+
+        while (true) {
+            System.out.println("+++++++++++++++");
+            System.out.println(stopWatch.getCurrentTime());
+            stopWatch.pauseTime();
+            System.out.println(stopWatch.getCurrentTime());
+            stopWatch.resumeTime();
+            System.out.println(stopWatch.getCurrentTime());
+        }
     }
 }
