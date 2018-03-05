@@ -54,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        final Button stopButton;
+        stopButton = (Button) findViewById(R.id.buttonLeft);
+        stopButton.setText("Stop");
+        final Context context = getApplicationContext();
+
+        rundeLoeschenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //safe time and reset timer
+            }
+        })
+
 
         Thread t = new Thread() {
             @Override
