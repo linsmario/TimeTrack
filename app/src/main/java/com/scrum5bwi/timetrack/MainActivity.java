@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView timeView;
         timeView = (TextView) findViewById(R.id.Time);
-        timeView.setText("00:00:00");
+        timeView.setText("00:00");
 
 
         final StopWatch stopWatch = new StopWatch();
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     while (!isInterrupted()) {
-                        Thread.sleep(10);
+                        Thread.sleep(100);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

@@ -67,9 +67,33 @@ public class StopWatch {
         }
     }
 
+    public ArrayList<String> getPauseTimes() {
+        ArrayList<String> pauseTimes = new ArrayList<>();
+        for (int i = 0; i < pauseList.size(); i++) {
+            pauseTimes.add(getTimeString(pauseList.get(i)));
+        }
+        return pauseTimes;
+    }
+
+    public ArrayList<String> getResumeTimes() {
+        ArrayList<String> resumeTimes = new ArrayList<>();
+        for (int i = 0; i < resumeList.size(); i++) {
+            resumeTimes.add(getTimeString(resumeList.get(i)));
+        }
+        return resumeTimes;
+    }
+
+    public String getLastPauseTime() {
+        return  getTimeString(pauseList.get(pauseList.size() - 1));
+    }
+
+    public String getLastResumeTime() {
+        return  getTimeString(resumeList.get(resumeList.size() - 1));
+    }
+
     private String getTimeString(long timeStamp) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SS");
-        SimpleDateFormat shortDateFormat = new SimpleDateFormat("mm:ss:SS");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss"); // milliseconds are SS if needed...
+        SimpleDateFormat shortDateFormat = new SimpleDateFormat("mm:ss");
         SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
         String timeString;
 
