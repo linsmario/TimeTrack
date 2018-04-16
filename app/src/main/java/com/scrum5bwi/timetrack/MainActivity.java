@@ -59,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        final Button stopButton;
-        stopButton = (Button) findViewById(R.id.buttonLeft);
-        stopButton.setText("Stop");
-        final Context context = getApplicationContext();
+        final Button rundeLoeschenButton;
+        rundeLoeschenButton = (Button) findViewById(R.id.buttonLeft);
+        rundeLoeschenButton.setText("Stop");
 
         rundeLoeschenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 lapTime.append(stopWatch.getCurrentTime() + "\n");
                 stopWatch.startTime();
             }
-        })
+        });
 
 
         Thread t = new Thread() {
