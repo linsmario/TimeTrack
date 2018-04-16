@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         startStopButton.setText("Start");
         final Context context = getApplicationContext();
 
+
+        final TextView lapTime;
+        lapTime=(TextView) findViewById(R.id.lapTime);
 
         final TextView timeView;
         timeView = (TextView) findViewById(R.id.Time);
@@ -54,16 +59,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*final Button stopButton;
+        final Button stopButton;
         stopButton = (Button) findViewById(R.id.buttonLeft);
         stopButton.setText("Stop");
+        final Context context = getApplicationContext();
 
         rundeLoeschenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //safe time and reset timer
+                lapTime.append(stopWatch.getCurrentTime() + "\n");
+                stopWatch.startTime();
             }
-        });*/
+        })
 
 
         Thread t = new Thread() {
